@@ -9,15 +9,19 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
+console.log(process.env.DB_Host);
 const db = mysql.createConnection({
   host: process.env.DB_Host,
   user: process.env.DB_User,
   password: process.env.DB_Pass,
   database: process.env.DB_DBName,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
 app.get("/books", (req, res) => {
-  const q = "SELECT * FROM test.books";
+  const q = "SELECT * FROM books";
 
   db.query(q, (err, data) => {
     if (err) {
