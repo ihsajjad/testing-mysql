@@ -21,7 +21,7 @@ const db = mysql.createConnection({
 });
 
 app.get("/books", (req, res) => {
-  const q = "SELECT * FROM books";
+  const q = "SELECT * FROM b1wc9ozq7dxwz5h8tafz.books";
 
   db.query(q, (err, data) => {
     if (err) {
