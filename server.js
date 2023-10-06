@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Shakib100%",
-  database: "test",
+  host: process.env.DB_Host,
+  user: process.env.DB_User,
+  password: process.env.DB_Pass,
+  database: process.env.DB_DBName,
 });
 
 app.get("/books", (req, res) => {
