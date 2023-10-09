@@ -9,7 +9,6 @@ const port = process.env.PORT || 3306;
 app.use(express.json());
 app.use(cors());
 
-console.log(process.env.DB_Host);
 const db = mysql.createConnection({
   host: process.env.DB_Host,
   user: process.env.DB_User,
@@ -22,6 +21,19 @@ const db = mysql.createConnection({
 
 app.get("/books", (req, res) => {
   const q = "SELECT * FROM b1wc9ozq7dxwz5h8tafz.books";
+
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.send("Failed to load data");
+    }
+    console.log(data);
+    return res.send(data);
+  });
+});
+
+app.get("/events", (req, res) => {
+  const q = "SELECT * FROM b1wc9ozq7dxwz5h8tafz.events";
 
   db.query(q, (err, data) => {
     if (err) {
