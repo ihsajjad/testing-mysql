@@ -45,6 +45,19 @@ app.get("/events", (req, res) => {
   });
 });
 
+app.get("/instructors", (req, res) => {
+  const q = `SELECT * FROM b1wc9ozq7dxwz5h8tafz.instructors`;
+
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.send("Failed to load data");
+    }
+    console.log(data);
+    return res.send(data);
+  });
+});
+
 app.get("/", (req, res) => {
   res.send("Uinty Yoga Studio is running");
 });
